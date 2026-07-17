@@ -35,7 +35,7 @@ jobs:
         run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.0.0' }}'.TrimStart('v')
 
       - name: Upload Windows package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: kgg-mp3-windows-x64
           path: dist/kgg-mp3-windows-x64.zip
