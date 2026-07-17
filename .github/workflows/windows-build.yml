@@ -1,0 +1,55 @@
+name: Windows portable EXE
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install FFmpeg locally
+        shell: powershell
+        run: ./install-ffmpeg.ps1
+
+      - name: Build portable EXE package
+        shell: powershell
+        run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.0.0' }}'.TrimStart('v')
+
+      - name: Upload Windows package
+        uses: actions/upload-artifact@v4
+        with:
+          name: kgg-mp3-windows-x64
+          path: dist/kgg-mp3-windows-x64.zip
+          if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $Tag = '${{ github.ref_name }}'
+          if (gh release view $Tag 2>$null) {
+            gh release upload $Tag 'dist/kgg-mp3-windows-x64.zip' --clobber
+          } else {
+            gh release create $Tag 'dist/kgg-mp3-windows-x64.zip' --title "kgg-mp3 $Tag" --generate-notes
+          }
