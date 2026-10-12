@@ -30,9 +30,25 @@ jobs:
         shell: powershell
         run: ./install-ffmpeg.ps1
 
+      - name: Install SQLite locally
+        shell: powershell
+        run: ./install-sqlite.ps1
+
+      - name: Install desktop UI dependencies
+        shell: powershell
+        run: ./install-ui.ps1
+
       - name: Build portable EXE package
         shell: powershell
-        run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.0.0' }}'.TrimStart('v')
+        run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.1.0' }}'.TrimStart('v')
+
+      - name: Verify audio conversion
+        shell: powershell
+        run: |
+          javac -encoding UTF-8 -cp build/classes -d build/test-classes src/test/java/cn/gkkstudio/MediaEngineSmokeTest.java
+          if ($LASTEXITCODE -ne 0) { throw 'Test compilation failed' }
+          java -cp 'build/classes;build/test-classes' cn.gkkstudio.MediaEngineSmokeTest
+          if ($LASTEXITCODE -ne 0) { throw 'Conversion test failed' }
 
       - name: Upload Windows package
         uses: actions/upload-artifact@v6
@@ -51,5 +67,5 @@ jobs:
           if (gh release view $Tag 2>$null) {
             gh release upload $Tag 'dist/kgg-mp3-windows-x64.zip' --clobber
           } else {
-            gh release create $Tag 'dist/kgg-mp3-windows-x64.zip' --title "kgg-mp3 $Tag" --generate-notes
+            gh release create $Tag 'dist/kgg-mp3-windows-x64.zip' --title "kgg-mp3 $Tag" --notes-file RELEASE_NOTES.md
           }

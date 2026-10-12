@@ -17,9 +17,10 @@ public final class MediaEngineSmokeTest {
                 "-f", "lavfi", "-i", "sine=frequency=1000:duration=1", "-c:a", "flac", flac.toString()).start();
             if (!generate.waitFor(20, TimeUnit.SECONDS) || generate.exitValue() != 0) throw new AssertionError("Could not generate test audio");
 
-            Path disguised = testDirectory.resolve("sample.gkk");
-            Files.copy(flac, disguised);
-            AudioItem item = new AudioItem(disguised);
+            Path encrypted = testDirectory.resolve("sample.kgg");
+            KgmDecoder.createEncryptedFixture(flac, encrypted);
+            if (!KgmDecoder.supports(encrypted)) throw new AssertionError("Generated KGM fixture was not detected");
+            AudioItem item = new AudioItem(encrypted);
             CountDownLatch finished = new CountDownLatch(1);
             try (MediaEngine engine = new MediaEngine(tools)) {
                 MediaEngine.Settings settings = new MediaEngine.Settings(testDirectory, false, MediaEngine.Quality.V0, 1);
@@ -35,7 +36,7 @@ public final class MediaEngineSmokeTest {
             if (!verify.waitFor(10, TimeUnit.SECONDS) || verify.exitValue() != 0 || !"mp3".equals(codec)) {
                 throw new AssertionError("Output is not a valid MP3: " + codec);
             }
-            System.out.println("PASS: disguised .gkk -> valid MP3 (" + Files.size(item.output) + " bytes)");
+            System.out.println("PASS: encrypted KGM/KGG -> valid MP3 (" + Files.size(item.output) + " bytes)");
         } finally {
             try (var files = Files.walk(testDirectory)) {
                 files.sorted((a, b) -> b.getNameCount() - a.getNameCount()).forEach(path -> {

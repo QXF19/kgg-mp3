@@ -1,5 +1,11 @@
 build/
 dist/
 tools/*.exe
+tools/*.jar
+.impeccable/review/
+.impeccable/seeds/
 tools/*.zip
 *.part.mp3
+tools/*.db
+tools/*.db-*
+tools/*.key

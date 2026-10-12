@@ -7,9 +7,10 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 final class SystemCapabilities {
-    record Toolchain(Path ffmpeg, Path ffprobe, String gpuName) {
+    record Toolchain(Path ffmpeg, Path ffprobe, Path sqlite3, String gpuName) {
         boolean ready() { return ffmpeg != null; }
         boolean hasProbe() { return ffprobe != null; }
+        boolean hasSqlite() { return sqlite3 != null; }
         boolean hasGpu() { return gpuName != null && !gpuName.isBlank(); }
     }
 
@@ -18,7 +19,8 @@ final class SystemCapabilities {
     static Toolchain detect() {
         Path ffmpeg = findExecutable("ffmpeg.exe", "ffmpeg");
         Path ffprobe = findExecutable("ffprobe.exe", "ffprobe");
-        return new Toolchain(ffmpeg, ffprobe, detectGpu());
+        Path sqlite3 = findExecutable("sqlite3.exe", "sqlite3");
+        return new Toolchain(ffmpeg, ffprobe, sqlite3, detectGpu());
     }
 
     private static Path findExecutable(String windowsName, String commandName) {

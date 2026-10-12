@@ -16,12 +16,12 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 final class MainFrame extends JFrame {
-    private static final Color BG = new Color(0xF4F6FA);
+    private static final Color BG = new Color(0xF5F5F7);
     private static final Color CARD = Color.WHITE;
-    private static final Color TEXT = new Color(0x172033);
-    private static final Color MUTED = new Color(0x778198);
-    private static final Color PRIMARY = new Color(0x6C55F5);
-    private static final Color PRIMARY_DARK = new Color(0x5842DE);
+    private static final Color TEXT = new Color(0x1D1D1F);
+    private static final Color MUTED = new Color(0x626269);
+    private static final Color PRIMARY = new Color(0x0064D2);
+    private static final Color PRIMARY_DARK = new Color(0x0056B7);
     private static final Color SUCCESS = new Color(0x22A06B);
     private static final Set<String> SUPPORTED = Set.of(
         "gkk", "kgg", "kgm", "kgma", "kge", "kgtemp", "mp3", "flac", "wav", "ogg", "m4a", "aac", "wma", "ape", "opus"
@@ -29,13 +29,29 @@ final class MainFrame extends JFrame {
 
     private final List<AudioItem> items = new CopyOnWriteArrayList<>();
     private final QueueTableModel tableModel = new QueueTableModel();
-    private final JTable table = new JTable(tableModel);
+    private final JTable table = new JTable(tableModel) {
+        @Override protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (getRowCount() == 0) {
+                Graphics2D p = (Graphics2D) g.create();
+                p.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                p.setColor(MUTED); p.setFont(getFont().deriveFont(14f));
+                String text = "等待你的第一首音乐";
+                p.drawString(text, (getWidth() - p.getFontMetrics().stringWidth(text)) / 2, getHeight() / 2);
+                p.setFont(getFont().deriveFont(12f)); text = "添加文件后，在下方选择音质并开始转换。";
+                p.drawString(text, (getWidth() - p.getFontMetrics().stringWidth(text)) / 2, getHeight() / 2 + 26);
+                p.dispose();
+            }
+        }
+    };
     private final JLabel countLabel = new JLabel("0 个文件");
     private final JLabel summaryLabel = new JLabel("拖入文件即可开始");
     private final JLabel engineLabel = new JLabel("正在检测转换引擎…");
     private final JButton startButton = primaryButton("开始转换");
     private final JButton cancelButton = secondaryButton("取消");
     private final JButton clearButton = secondaryButton("清空列表");
+    private final JButton browseButton = secondaryButton("浏览");
+    private final JButton openOutputButton = secondaryButton("打开输出文件夹");
     private final JTextField outputField = new JTextField();
     private final JCheckBox sourceDirectory = new JCheckBox("保存到源文件夹");
     private final JComboBox<MediaEngine.Quality> qualityBox = new JComboBox<>(MediaEngine.Quality.values());
@@ -50,8 +66,8 @@ final class MainFrame extends JFrame {
         tools = SystemCapabilities.detect();
         engine = new MediaEngine(tools);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        setMinimumSize(new Dimension(980, 700));
-        setSize(1120, 780);
+        setMinimumSize(new Dimension(1080, 740));
+        setSize(1200, 820);
         setLocationRelativeTo(null);
         setContentPane(buildRoot());
         configureActions();
@@ -79,39 +95,50 @@ final class MainFrame extends JFrame {
 
     private JComponent buildSidebar() {
         JPanel sidebar = new JPanel();
-        sidebar.setBackground(new Color(0x191827));
-        sidebar.setPreferredSize(new Dimension(220, 0));
+        sidebar.setBackground(new Color(0xECECEF));
+        sidebar.setPreferredSize(new Dimension(188, 0));
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
-        sidebar.setBorder(new EmptyBorder(28, 20, 24, 20));
+        sidebar.setBorder(new CompoundBorder(new MatteBorder(0, 0, 0, 1, new Color(0xDDDDDF)), new EmptyBorder(30, 18, 24, 18)));
 
-        JLabel brand = new JLabel("◉  KGG MP3");
-        brand.setForeground(Color.WHITE);
+        JLabel brand = new JLabel("KGG MP3");
+        brand.setForeground(TEXT);
         brand.setFont(brand.getFont().deriveFont(Font.BOLD, 20f));
         brand.setAlignmentX(Component.LEFT_ALIGNMENT);
         sidebar.add(brand);
-        JLabel version = new JLabel("Audio Converter 1.0");
-        version.setForeground(new Color(0x85839A));
-        version.setBorder(new EmptyBorder(4, 29, 30, 0));
+        JLabel version = new JLabel("Audio Converter 1.1");
+        version.setForeground(MUTED);
+        version.setFont(version.getFont().deriveFont(11f));
+        version.setBorder(new EmptyBorder(6, 0, 34, 0));
         version.setAlignmentX(Component.LEFT_ALIGNMENT);
         sidebar.add(version);
-        sidebar.add(navItem("⌁", "音频转换", true));
+        sidebar.add(navItem("", "音频转换", true));
         sidebar.add(Box.createVerticalStrut(8));
-        sidebar.add(navItem("⚡", "性能状态", false));
+        JButton openOutput = openOutputButton;
+        openOutput.setAlignmentX(Component.LEFT_ALIGNMENT);
+        openOutput.setMaximumSize(new Dimension(152, 38));
+        openOutput.addActionListener(e -> {
+            Path output = resolveOutputDirectory();
+            if (output == null) return;
+            try { Files.createDirectories(output); Desktop.getDesktop().open(output.toFile()); }
+            catch (Exception error) { JOptionPane.showMessageDialog(this, "无法打开文件夹：" + error.getMessage()); }
+        });
+        sidebar.add(openOutput);
         sidebar.add(Box.createVerticalGlue());
 
-        JPanel info = new RoundedPanel(new Color(0x242238), 18);
+        JPanel info = new JPanel();
+        info.setOpaque(false);
         info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
-        info.setBorder(new EmptyBorder(15, 15, 15, 15));
+        info.setBorder(new EmptyBorder(15, 0, 0, 0));
         info.setMaximumSize(new Dimension(180, 125));
         info.setAlignmentX(Component.LEFT_ALIGNMENT);
         JLabel safe = new JLabel("本地安全转换");
-        safe.setForeground(Color.WHITE);
+        safe.setForeground(TEXT);
         safe.setFont(safe.getFont().deriveFont(Font.BOLD));
         JLabel safe2 = new JLabel("文件不会上传网络");
-        safe2.setForeground(new Color(0xA9A6BC));
+        safe2.setForeground(MUTED);
         safe2.setFont(safe2.getFont().deriveFont(12f));
         JLabel safe3 = new JLabel("源文件永不覆盖");
-        safe3.setForeground(new Color(0xA9A6BC));
+        safe3.setForeground(MUTED);
         safe3.setFont(safe3.getFont().deriveFont(12f));
         info.add(safe); info.add(Box.createVerticalStrut(8)); info.add(safe2); info.add(Box.createVerticalStrut(3)); info.add(safe3);
         sidebar.add(info);
@@ -119,12 +146,12 @@ final class MainFrame extends JFrame {
     }
 
     private JComponent navItem(String icon, String text, boolean active) {
-        JPanel panel = new RoundedPanel(active ? new Color(0x342D66) : new Color(0x191827), 14);
+        JPanel panel = new RoundedPanel(active ? new Color(0xD8E7FB) : new Color(0xECECEF), 12);
         panel.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 11));
         panel.setMaximumSize(new Dimension(180, 45));
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        JLabel label = new JLabel(icon + "   " + text);
-        label.setForeground(active ? new Color(0xC9C0FF) : new Color(0x9C99AA));
+        JLabel label = new JLabel(text);
+        label.setForeground(active ? new Color(0x005BBF) : MUTED);
         label.setFont(label.getFont().deriveFont(active ? Font.BOLD : Font.PLAIN, 14f));
         panel.add(label);
         return panel;
@@ -133,7 +160,7 @@ final class MainFrame extends JFrame {
     private JComponent buildContent() {
         JPanel wrapper = new JPanel(new BorderLayout(0, 18));
         wrapper.setOpaque(false);
-        wrapper.setBorder(new EmptyBorder(26, 28, 22, 28));
+        wrapper.setBorder(new EmptyBorder(30, 28, 24, 28));
         wrapper.add(buildHeader(), BorderLayout.NORTH);
 
         JPanel center = new JPanel(new BorderLayout(0, 16));
@@ -151,18 +178,19 @@ final class MainFrame extends JFrame {
         JPanel titles = new JPanel();
         titles.setOpaque(false);
         titles.setLayout(new BoxLayout(titles, BoxLayout.Y_AXIS));
-        JLabel title = new JLabel("高品质音频转换");
+        JLabel title = new JLabel("让音乐，自由播放。");
         title.setForeground(TEXT);
-        title.setFont(title.getFont().deriveFont(Font.BOLD, 27f));
-        JLabel subtitle = new JLabel("批量转换为 MP3 · 智能格式探测 · 保留音频标签");
+        title.setFont(title.getFont().deriveFont(Font.BOLD, 28f));
+        JLabel subtitle = new JLabel("将你的酷狗音频转换为高品质 MP3。");
         subtitle.setForeground(MUTED);
         subtitle.setBorder(new EmptyBorder(5, 0, 0, 0));
         titles.add(title); titles.add(subtitle);
         header.add(titles, BorderLayout.WEST);
 
-        JPanel badge = new RoundedPanel(new Color(0xE8F7F0), 18);
+        JPanel badge = new JPanel();
+        badge.setOpaque(false);
         badge.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 8));
-        JLabel dot = new JLabel("●"); dot.setForeground(SUCCESS);
+        JLabel dot = new JLabel(); dot.setIcon(new StatusDot(tools.ready()));
         engineLabel.setForeground(new Color(0x167451));
         engineLabel.setFont(engineLabel.getFont().deriveFont(Font.BOLD, 12f));
         badge.add(dot); badge.add(engineLabel);
@@ -173,24 +201,22 @@ final class MainFrame extends JFrame {
     private JComponent buildDropCard() {
         DropPanel drop = new DropPanel();
         drop.setLayout(new BoxLayout(drop, BoxLayout.Y_AXIS));
-        drop.setBorder(new EmptyBorder(19, 20, 17, 20));
-        drop.setPreferredSize(new Dimension(0, 138));
-        JLabel icon = new JLabel("＋");
-        icon.setForeground(PRIMARY);
-        icon.setFont(icon.getFont().deriveFont(Font.PLAIN, 28f));
+        drop.setBorder(new EmptyBorder(18, 20, 18, 20));
+        drop.setPreferredSize(new Dimension(0, 180));
+        JLabel icon = new JLabel(new ImportIcon());
         icon.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel title = new JLabel("拖放 GKK / KGG / KGM 或普通音频到这里");
+        JLabel title = new JLabel("把音乐拖到这里");
         title.setForeground(TEXT);
-        title.setFont(title.getFont().deriveFont(Font.BOLD, 15f));
+        title.setFont(title.getFont().deriveFont(Font.BOLD, 18f));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JLabel hint = new JLabel("也可选择多个文件或整个文件夹");
+        JLabel hint = new JLabel("支持 KGG、KGM、FLAC 及常见音频格式");
         hint.setForeground(MUTED);
         hint.setFont(hint.getFont().deriveFont(12f));
         hint.setAlignmentX(Component.CENTER_ALIGNMENT);
-        JButton choose = linkButton("选择文件");
+        JButton choose = secondaryButton("添加文件或文件夹");
         choose.setAlignmentX(Component.CENTER_ALIGNMENT);
         choose.addActionListener(e -> chooseFiles());
-        drop.add(icon); drop.add(Box.createVerticalStrut(2)); drop.add(title); drop.add(Box.createVerticalStrut(3)); drop.add(hint); drop.add(Box.createVerticalStrut(4)); drop.add(choose);
+        drop.add(icon); drop.add(Box.createVerticalStrut(8)); drop.add(title); drop.add(Box.createVerticalStrut(6)); drop.add(hint); drop.add(Box.createVerticalStrut(12)); drop.add(choose);
         new DropTarget(drop, new FileDropListener());
         return drop;
     }
@@ -206,26 +232,35 @@ final class MainFrame extends JFrame {
         JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         left.setOpaque(false); left.add(title); left.add(Box.createHorizontalStrut(12)); left.add(countLabel);
         toolbar.add(left, BorderLayout.WEST);
-        clearButton.setPreferredSize(new Dimension(82, 31));
+        clearButton.setPreferredSize(new Dimension(100, 32));
         toolbar.add(clearButton, BorderLayout.EAST);
         card.add(toolbar, BorderLayout.NORTH);
 
         table.setRowHeight(48);
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
-        table.setSelectionBackground(new Color(0xF1EEFF));
+        table.setSelectionBackground(new Color(0xE6F0FF));
         table.setSelectionForeground(TEXT);
         table.setBackground(CARD);
         table.setForeground(TEXT);
         table.setFillsViewportHeight(true);
         table.getTableHeader().setPreferredSize(new Dimension(0, 34));
-        table.getTableHeader().setBackground(new Color(0xF8F9FC));
+        table.getTableHeader().setBackground(new Color(0xFAFAFC));
         table.getTableHeader().setForeground(MUTED);
         table.getColumnModel().getColumn(0).setPreferredWidth(330);
         table.getColumnModel().getColumn(1).setPreferredWidth(90);
         table.getColumnModel().getColumn(2).setPreferredWidth(210);
         table.getColumnModel().getColumn(3).setPreferredWidth(120);
         table.getColumnModel().getColumn(3).setCellRenderer(new ProgressRenderer());
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override public Component getTableCellRendererComponent(JTable t, Object value, boolean selected, boolean focus, int row, int column) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(t, value, selected, focus, row, column);
+                label.setBorder(new EmptyBorder(0, 12, 0, 10));
+                label.setToolTipText(value == null ? null : value.toString());
+                if (!selected) label.setBackground(row % 2 == 0 ? Color.WHITE : new Color(0xFAFAFC));
+                return label;
+            }
+        });
         JScrollPane scroll = new JScrollPane(table);
         scroll.setBorder(new LineBorder(new Color(0xECEEF3), 1, true));
         scroll.getViewport().setBackground(CARD);
@@ -235,7 +270,7 @@ final class MainFrame extends JFrame {
 
     private JComponent buildSettingsCard() {
         JPanel card = cardPanel(new BorderLayout(18, 0));
-        card.setBorder(new CompoundBorder(new LineBorder(new Color(0xE7E9F0), 1, true), new EmptyBorder(14, 16, 14, 16)));
+        card.setBorder(new EmptyBorder(18, 18, 18, 18));
 
         JPanel settings = new JPanel(new GridBagLayout());
         settings.setOpaque(false);
@@ -248,7 +283,8 @@ final class MainFrame extends JFrame {
         c.gridy = 1; c.gridx = 0; c.weightx = 1; c.fill = GridBagConstraints.HORIZONTAL;
         outputField.setPreferredSize(new Dimension(260, 34));
         outputField.setToolTipText("留空时使用“音乐\\KGG MP3”");
-        JButton browse = secondaryButton("浏览");
+        outputField.putClientProperty("JTextField.placeholderText", "音乐 / KGG MP3");
+        JButton browse = browseButton;
         browse.setPreferredSize(new Dimension(62, 34));
         JPanel out = new JPanel(new BorderLayout(6, 0)); out.setOpaque(false); out.add(outputField, BorderLayout.CENTER); out.add(browse, BorderLayout.EAST);
         settings.add(out, c);
@@ -258,7 +294,13 @@ final class MainFrame extends JFrame {
         c.gridy = 2; c.gridx = 0; c.gridwidth = 3; c.insets = new Insets(7, 0, 0, 0);
         sourceDirectory.setOpaque(false); sourceDirectory.setForeground(MUTED); settings.add(sourceDirectory, c);
         browse.addActionListener(e -> chooseOutputDirectory());
-        sourceDirectory.addActionListener(e -> outputField.setEnabled(!sourceDirectory.isSelected()));
+        sourceDirectory.addActionListener(e -> {
+            boolean separateFolder = !sourceDirectory.isSelected();
+            outputField.setEnabled(separateFolder);
+            browseButton.setEnabled(separateFolder);
+            openOutputButton.setEnabled(separateFolder);
+            openOutputButton.setToolTipText(separateFolder ? "打开所选输出目录" : "音频保存到各自源文件夹，请在源文件夹中查看");
+        });
         card.add(settings, BorderLayout.CENTER);
 
         JPanel actions = new JPanel(); actions.setOpaque(false); actions.setLayout(new BoxLayout(actions, BoxLayout.Y_AXIS));
@@ -284,7 +326,7 @@ final class MainFrame extends JFrame {
 
     private void updateCapabilities() {
         if (tools.ready()) {
-            engineLabel.setText(tools.hasGpu() ? "引擎就绪 · 已检测显卡" : "FFmpeg 引擎就绪");
+            engineLabel.setText("本地引擎已就绪");
             engineLabel.setToolTipText(tools.hasGpu()
                 ? tools.gpuName() + "；MP3 编码由 CPU/LAME 完成，多任务并行加速"
                 : "未检测到独立显卡；MP3 编码使用 CPU/LAME");
@@ -341,6 +383,8 @@ final class MainFrame extends JFrame {
         concurrencySpinner.setEnabled(!value);
         sourceDirectory.setEnabled(!value);
         outputField.setEnabled(!value && !sourceDirectory.isSelected());
+        browseButton.setEnabled(!value && !sourceDirectory.isSelected());
+        openOutputButton.setEnabled(!value && !sourceDirectory.isSelected());
         summaryLabel.setText(value ? "正在本地处理…" : "转换完成");
     }
 
@@ -403,19 +447,20 @@ final class MainFrame extends JFrame {
     }
 
     private static JPanel cardPanel(LayoutManager layout) {
-        JPanel panel = new RoundedPanel(CARD, 18);
+        JPanel panel = new RoundedPanel(CARD, 16);
         panel.setLayout(layout);
         panel.setBorder(new EmptyBorder(14, 16, 14, 16));
         return panel;
     }
 
     private static JLabel smallLabel(String value) {
-        JLabel label = new JLabel(value); label.setForeground(MUTED); label.setFont(label.getFont().deriveFont(11f)); return label;
+        JLabel label = new JLabel(value); label.setForeground(MUTED); label.setFont(label.getFont().deriveFont(12f)); return label;
     }
 
     private static JButton primaryButton(String text) {
         JButton button = new JButton(text);
-        button.setForeground(Color.WHITE); button.setBackground(PRIMARY); button.setFocusPainted(false); button.setBorder(new EmptyBorder(9, 20, 9, 20));
+        button.setForeground(Color.WHITE); button.setBackground(PRIMARY); button.setMargin(new Insets(9, 20, 9, 20));
+        button.putClientProperty("JButton.buttonType", "roundRect");
         button.addMouseListener(new MouseAdapter() {
             @Override public void mouseEntered(MouseEvent e) { if (button.isEnabled()) button.setBackground(PRIMARY_DARK); }
             @Override public void mouseExited(MouseEvent e) { button.setBackground(PRIMARY); }
@@ -424,7 +469,7 @@ final class MainFrame extends JFrame {
     }
 
     private static JButton secondaryButton(String text) {
-        JButton button = new JButton(text); button.setForeground(TEXT); button.setBackground(new Color(0xF3F4F8)); button.setFocusPainted(false); return button;
+        JButton button = new JButton(text); button.setForeground(TEXT); button.setBackground(Color.WHITE); button.putClientProperty("JButton.buttonType", "roundRect"); return button;
     }
 
     private static JButton linkButton(String text) {
@@ -437,7 +482,7 @@ final class MainFrame extends JFrame {
             BufferedImage image = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g = image.createGraphics();
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g.setPaint(new GradientPaint(0, 0, PRIMARY, size, size, new Color(0x4A32CD)));
+            g.setColor(PRIMARY);
             g.fillRoundRect(1, 1, size - 2, size - 2, Math.max(5, size / 4), Math.max(5, size / 4));
             g.setColor(new Color(255, 255, 255, 225));
             int bar = Math.max(2, size / 13);
@@ -473,7 +518,7 @@ final class MainFrame extends JFrame {
     }
 
     private static final class ProgressRenderer extends JProgressBar implements TableCellRenderer {
-        ProgressRenderer() { setMinimum(0); setMaximum(100); setStringPainted(true); setBorderPainted(false); setForeground(PRIMARY); setBackground(new Color(0xECEAF7)); }
+        ProgressRenderer() { setMinimum(0); setMaximum(100); setStringPainted(true); setBorderPainted(false); setForeground(PRIMARY); setBackground(new Color(0xE6EFFB)); }
         @Override public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focus, int row, int column) {
             int progress = value instanceof Integer i ? i : 0; setValue(progress); setString(progress == 0 ? "—" : progress + "%"); return this;
         }
@@ -486,9 +531,29 @@ final class MainFrame extends JFrame {
     }
 
     private static final class DropPanel extends RoundedPanel {
-        DropPanel() { super(new Color(0xFBFAFF), 18); }
+        DropPanel() { super(Color.WHITE, 16); }
         @Override protected void paintBorder(Graphics g) {
-            Graphics2D g2 = (Graphics2D) g.create(); g2.setColor(new Color(0xBEB4FA)); g2.setStroke(new BasicStroke(1.3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 1f, new float[]{7f, 6f}, 0)); g2.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, 18, 18); g2.dispose();
+            Graphics2D g2 = (Graphics2D) g.create(); g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); g2.setColor(new Color(0xD9E2EF)); g2.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, 16, 16); g2.dispose();
+        }
+    }
+
+    private static final class StatusDot implements Icon {
+        private final boolean ready;
+        StatusDot(boolean ready) { this.ready = ready; }
+        public int getIconWidth() { return 8; }
+        public int getIconHeight() { return 8; }
+        public void paintIcon(Component c, Graphics g, int x, int y) { g.setColor(ready ? SUCCESS : new Color(0xB54708)); g.fillOval(x, y, 8, 8); }
+    }
+
+    private static final class ImportIcon implements Icon {
+        public int getIconWidth() { return 40; }
+        public int getIconHeight() { return 36; }
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            Graphics2D p = (Graphics2D) g.create();
+            p.translate(x, y); p.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            p.setColor(PRIMARY); p.setStroke(new BasicStroke(2.2f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            p.drawLine(20, 3, 20, 23); p.drawLine(13, 16, 20, 23); p.drawLine(20, 23, 27, 16);
+            p.drawLine(5, 23, 5, 32); p.drawLine(5, 32, 35, 32); p.drawLine(35, 32, 35, 23); p.dispose();
         }
     }
 

@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T13:38:53.689Z",
+  "title": "Design System: KGG MP3",
+  "extensions": {
+    "colorMeta": {
+      "workspace": {
+        "role": "neutral",
+        "displayName": "Cool Workspace",
+        "tonalRamp": [
+          "oklch(15.00% 0.00265 286.35)",
+          "oklch(26.43% 0.00265 286.35)",
+          "oklch(37.86% 0.00265 286.35)",
+          "oklch(49.29% 0.00265 286.35)",
+          "oklch(60.71% 0.00265 286.35)",
+          "oklch(72.14% 0.00265 286.35)",
+          "oklch(83.57% 0.00265 286.35)",
+          "oklch(95.00% 0.00265 286.35)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White Work Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "Sidebar Silver",
+        "tonalRamp": [
+          "oklch(15.00% 0.00401 286.32)",
+          "oklch(26.43% 0.00401 286.32)",
+          "oklch(37.86% 0.00401 286.32)",
+          "oklch(49.29% 0.00401 286.32)",
+          "oklch(60.71% 0.00401 286.32)",
+          "oklch(72.14% 0.00401 286.32)",
+          "oklch(83.57% 0.00401 286.32)",
+          "oklch(95.00% 0.00401 286.32)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Charcoal",
+        "tonalRamp": [
+          "oklch(15.00% 0.00381 286.10)",
+          "oklch(26.43% 0.00381 286.10)",
+          "oklch(37.86% 0.00381 286.10)",
+          "oklch(49.29% 0.00381 286.10)",
+          "oklch(60.71% 0.00381 286.10)",
+          "oklch(72.14% 0.00381 286.10)",
+          "oklch(83.57% 0.00381 286.10)",
+          "oklch(95.00% 0.00381 286.10)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "tonalRamp": [
+          "oklch(15.00% 0.01101 285.99)",
+          "oklch(26.43% 0.01101 285.99)",
+          "oklch(37.86% 0.01101 285.99)",
+          "oklch(49.29% 0.01101 285.99)",
+          "oklch(60.71% 0.01101 285.99)",
+          "oklch(72.14% 0.01101 285.99)",
+          "oklch(83.57% 0.01101 285.99)",
+          "oklch(95.00% 0.01101 285.99)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.18715 257.23)",
+          "oklch(26.43% 0.18715 257.23)",
+          "oklch(37.86% 0.18715 257.23)",
+          "oklch(49.29% 0.18715 257.23)",
+          "oklch(60.71% 0.18715 257.23)",
+          "oklch(72.14% 0.18715 257.23)",
+          "oklch(83.57% 0.18715 257.23)",
+          "oklch(95.00% 0.18715 257.23)"
+        ]
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Deep Action Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.16920 257.31)",
+          "oklch(26.43% 0.16920 257.31)",
+          "oklch(37.86% 0.16920 257.31)",
+          "oklch(49.29% 0.16920 257.31)",
+          "oklch(60.71% 0.16920 257.31)",
+          "oklch(72.14% 0.16920 257.31)",
+          "oklch(83.57% 0.16920 257.31)",
+          "oklch(95.00% 0.16920 257.31)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.21771 257.42)",
+          "oklch(26.43% 0.21771 257.42)",
+          "oklch(37.86% 0.21771 257.42)",
+          "oklch(49.29% 0.21771 257.42)",
+          "oklch(60.71% 0.21771 257.42)",
+          "oklch(72.14% 0.21771 257.42)",
+          "oklch(83.57% 0.21771 257.42)",
+          "oklch(95.00% 0.21771 257.42)"
+        ]
+      },
+      "navigation-selected": {
+        "role": "primary",
+        "displayName": "Pale Navigation Selection",
+        "tonalRamp": [
+          "oklch(15.00% 0.03167 255.59)",
+          "oklch(26.43% 0.03167 255.59)",
+          "oklch(37.86% 0.03167 255.59)",
+          "oklch(49.29% 0.03167 255.59)",
+          "oklch(60.71% 0.03167 255.59)",
+          "oklch(72.14% 0.03167 255.59)",
+          "oklch(83.57% 0.03167 255.59)",
+          "oklch(95.00% 0.03167 255.59)"
+        ]
+      },
+      "navigation-text": {
+        "role": "primary",
+        "displayName": "Navigation Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.17353 257.05)",
+          "oklch(26.43% 0.17353 257.05)",
+          "oklch(37.86% 0.17353 257.05)",
+          "oklch(49.29% 0.17353 257.05)",
+          "oklch(60.71% 0.17353 257.05)",
+          "oklch(72.14% 0.17353 257.05)",
+          "oklch(83.57% 0.17353 257.05)",
+          "oklch(95.00% 0.17353 257.05)"
+        ]
+      },
+      "table-selected": {
+        "role": "primary",
+        "displayName": "Pale Queue Selection",
+        "tonalRamp": [
+          "oklch(15.00% 0.02289 258.36)",
+          "oklch(26.43% 0.02289 258.36)",
+          "oklch(37.86% 0.02289 258.36)",
+          "oklch(49.29% 0.02289 258.36)",
+          "oklch(60.71% 0.02289 258.36)",
+          "oklch(72.14% 0.02289 258.36)",
+          "oklch(83.57% 0.02289 258.36)",
+          "oklch(95.00% 0.02289 258.36)"
+        ]
+      },
+      "table-subtle": {
+        "role": "neutral",
+        "displayName": "Quiet Table",
+        "tonalRamp": [
+          "oklch(15.00% 0.00264 286.35)",
+          "oklch(26.43% 0.00264 286.35)",
+          "oklch(37.86% 0.00264 286.35)",
+          "oklch(49.29% 0.00264 286.35)",
+          "oklch(60.71% 0.00264 286.35)",
+          "oklch(72.14% 0.00264 286.35)",
+          "oklch(83.57% 0.00264 286.35)",
+          "oklch(95.00% 0.00264 286.35)"
+        ]
+      },
+      "progress-track": {
+        "role": "primary",
+        "displayName": "Progress Mist",
+        "tonalRamp": [
+          "oklch(15.00% 0.01884 255.53)",
+          "oklch(26.43% 0.01884 255.53)",
+          "oklch(37.86% 0.01884 255.53)",
+          "oklch(49.29% 0.01884 255.53)",
+          "oklch(60.71% 0.01884 255.53)",
+          "oklch(72.14% 0.01884 255.53)",
+          "oklch(83.57% 0.01884 255.53)",
+          "oklch(95.00% 0.01884 255.53)"
+        ]
+      },
+      "sidebar-divider": {
+        "role": "neutral",
+        "displayName": "Sidebar Divider",
+        "tonalRamp": [
+          "oklch(15.00% 0.00270 286.35)",
+          "oklch(26.43% 0.00270 286.35)",
+          "oklch(37.86% 0.00270 286.35)",
+          "oklch(49.29% 0.00270 286.35)",
+          "oklch(60.71% 0.00270 286.35)",
+          "oklch(72.14% 0.00270 286.35)",
+          "oklch(83.57% 0.00270 286.35)",
+          "oklch(95.00% 0.00270 286.35)"
+        ]
+      },
+      "table-border": {
+        "role": "neutral",
+        "displayName": "Table Border",
+        "tonalRamp": [
+          "oklch(15.00% 0.00704 268.55)",
+          "oklch(26.43% 0.00704 268.55)",
+          "oklch(37.86% 0.00704 268.55)",
+          "oklch(49.29% 0.00704 268.55)",
+          "oklch(60.71% 0.00704 268.55)",
+          "oklch(72.14% 0.00704 268.55)",
+          "oklch(83.57% 0.00704 268.55)",
+          "oklch(95.00% 0.00704 268.55)"
+        ]
+      },
+      "import-border": {
+        "role": "neutral",
+        "displayName": "Import Border",
+        "tonalRamp": [
+          "oklch(15.00% 0.02023 257.47)",
+          "oklch(26.43% 0.02023 257.47)",
+          "oklch(37.86% 0.02023 257.47)",
+          "oklch(49.29% 0.02023 257.47)",
+          "oklch(60.71% 0.02023 257.47)",
+          "oklch(72.14% 0.02023 257.47)",
+          "oklch(83.57% 0.02023 257.47)",
+          "oklch(95.00% 0.02023 257.47)"
+        ]
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Ready Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.13303 159.56)",
+          "oklch(26.43% 0.13303 159.56)",
+          "oklch(37.86% 0.13303 159.56)",
+          "oklch(49.29% 0.13303 159.56)",
+          "oklch(60.71% 0.13303 159.56)",
+          "oklch(72.14% 0.13303 159.56)",
+          "oklch(83.57% 0.13303 159.56)",
+          "oklch(95.00% 0.13303 159.56)"
+        ]
+      },
+      "success-text": {
+        "role": "semantic",
+        "displayName": "Dark Ready Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.10100 162.43)",
+          "oklch(26.43% 0.10100 162.43)",
+          "oklch(37.86% 0.10100 162.43)",
+          "oklch(49.29% 0.10100 162.43)",
+          "oklch(60.71% 0.10100 162.43)",
+          "oklch(72.14% 0.10100 162.43)",
+          "oklch(83.57% 0.10100 162.43)",
+          "oklch(95.00% 0.10100 162.43)"
+        ]
+      },
+      "warning": {
+        "role": "semantic",
+        "displayName": "Engine Warning",
+        "tonalRamp": [
+          "oklch(15.00% 0.15617 42.99)",
+          "oklch(26.43% 0.15617 42.99)",
+          "oklch(37.86% 0.15617 42.99)",
+          "oklch(49.29% 0.15617 42.99)",
+          "oklch(60.71% 0.15617 42.99)",
+          "oklch(72.14% 0.15617 42.99)",
+          "oklch(83.57% 0.15617 42.99)",
+          "oklch(95.00% 0.15617 42.99)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Main heading",
+        "purpose": "28-point bold Swing font; portable token is not a CSS implementation."
+      },
+      "headline": {
+        "displayName": "Import heading",
+        "purpose": "18-point bold Swing font."
+      },
+      "title": {
+        "displayName": "Queue heading",
+        "purpose": "15-point bold Swing font."
+      },
+      "body": {
+        "displayName": "Control and table text",
+        "purpose": "13-point plain Swing font."
+      },
+      "label": {
+        "displayName": "Supporting labels",
+        "purpose": "12-point plain labels; readiness text uses bold."
+      },
+      "metadata": {
+        "displayName": "Supporting metadata",
+        "purpose": "11-point version and conversion-summary text."
+      }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Primary conversion button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Canonical: MainFrame.primaryButton() and buildSettingsCard(). Java Swing JButton with FlatLaf roundRect painter, enabled hover color, and UIManager keyboard focus; 150 by 40 preferred/maximum size. No HTML/CSS rendering supplied for this native component."
+    },
+    {
+      "name": "Secondary action button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Canonical: MainFrame.secondaryButton(). White/charcoal JButton, roundRect client property. FlatLaf owns hover, pressed, focus, and disabled rendering; dimensions vary by action."
+    },
+    {
+      "name": "Output path field",
+      "kind": "input",
+      "refersTo": "output-field",
+      "description": "Canonical: MainFrame.buildSettingsCard(). JTextField at preferred height 34, placeholder and tooltip; disabled for source-folder mode or while processing. FlatLaf owns field colors and focus."
+    },
+    {
+      "name": "Selected sidebar context",
+      "kind": "nav",
+      "refersTo": "navigation-selected",
+      "description": "Canonical: MainFrame.navItem(). Pale-blue rounded JPanel with bold 14-point blue label. A static context indicator, not an interactive routing component."
+    },
+    {
+      "name": "White work card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Canonical: MainFrame.cardPanel() and RoundedPanel. Flat Java2D white fill, arc diameter 16 (radius 8), padding 14 vertical/16 horizontal; settings overrides padding to 18."
+    },
+    {
+      "name": "Import surface",
+      "kind": "custom",
+      "refersTo": "import-card",
+      "description": "Canonical: MainFrame.buildDropCard(), DropPanel, ImportIcon. Preferred height 180, white rounded fill, pale outline, blue drawn import arrow, file chooser and copy-drop input."
+    },
+    {
+      "name": "Queue table row",
+      "kind": "custom",
+      "refersTo": "queue-row",
+      "description": "Canonical: MainFrame.buildQueueCard(). Real JTable, row height 48, alternating white/subtle rows, selected pale blue, 12/10 left/right cell padding, text tooltips."
+    },
+    {
+      "name": "Conversion progress",
+      "kind": "custom",
+      "description": "Canonical: MainFrame.ProgressRenderer. Real JProgressBar, primary blue foreground and progress-track background, percentage string above zero, em dash at zero."
+    }
+  ],
+  "narrative": {
+    "northStar": "A Quiet Music Workspace",
+    "overview": "A restrained macOS-inspired visual world expresses the user's pinned Apple-like direction: pale neutrals, white work areas, charcoal Chinese typography, and precise blue actions. This is a Windows desktop application implemented in Java Swing with FlatLaf, not a macOS application, browser surface, iOS app, or Android app. Windows window management stays intact.\n\nCalm comes from tonal separation and generous spacing around task-dense controls. The real conversion queue remains central; styling must preserve local processing, source preservation, and the existing conversion workflow. This document records code evidence from MainFrame.java and GkkMp3App.java. Finish review covered empty and waiting queues at window widths 1200 and 1080; processing, completion, and failure layouts are code-observed rather than visually verified.",
+    "keyCharacteristics": [
+      "Quiet neutral surfaces with blue reserved for actions, selection, and progress.",
+      "Readable Chinese system typography and a real, scrollable queue table.",
+      "Rounded custom panels without painted shadows or decorative window chrome.",
+      "Local-first desktop behavior and preserved Windows affordances."
+    ],
+    "rules": [
+      {
+        "name": "The Action Separation Rule",
+        "body": "Do not conflate primary action blue, keyboard focus blue, and pale selected surfaces; their roles are distinct in the implementation.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tonal Depth Rule",
+        "body": "Preserve flat, differentiated work areas; do not add decorative elevation to the queue or import surface.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the user's Apple-like visual direction while retaining Windows window management.",
+      "Do use the observed palette and Microsoft YaHei UI hierarchy for new Swing controls.",
+      "Do keep visible text status, usable keyboard focus, and file-state detail alongside color cues.",
+      "Do preserve the local converter workflow and source-file safety.",
+      "Do treat Java source as canonical when portable token previews differ from FlatLaf rendering."
+    ],
+    "donts": [
+      "Don't represent this Windows Swing application as web, macOS, iOS, or Android.",
+      "Don't add fake Apple traffic-light window controls or decorative glass to the native frame.",
+      "Don't fabricate CSS breakpoints, custom control-state colors, or animation timings.",
+      "Don't describe GPU detection as GPU MP3 encoding or imply audio uploads.",
+      "Don't label procedural project icons as AI-generated assets."
+    ]
+  }
+}

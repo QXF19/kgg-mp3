@@ -79,7 +79,7 @@ final class MediaEngine implements AutoCloseable {
 
             PreparedInput input = prepareInput(item.source);
             prepared = input.temporary() ? input.path() : null;
-            double duration = probeDuration(input.path());
+            ProbeInfo probe = probe(input.path());
             if (cancelling) throw new CancellationException();
 
             item.state = AudioItem.State.CONVERTING;
@@ -92,8 +92,15 @@ final class MediaEngine implements AutoCloseable {
             List<String> command = new ArrayList<>();
             command.add(tools.ffmpeg().toString());
             Collections.addAll(command, "-hide_banner", "-loglevel", "error", "-nostdin", "-i", input.path().toString(),
-                "-map", "0:a:0", "-vn", "-map_metadata", "0", "-c:a", "libmp3lame");
-            command.addAll(settings.quality().arguments);
+                "-map", "0:a:0", "-vn", "-map_metadata", "0");
+            boolean preserveOriginalMp3 = "mp3".equalsIgnoreCase(probe.codec());
+            if (preserveOriginalMp3) {
+                Collections.addAll(command, "-c:a", "copy");
+                item.detail = input.description() + " · 无损提取原始 MP3";
+            } else {
+                Collections.addAll(command, "-c:a", "libmp3lame");
+                command.addAll(settings.quality().arguments);
+            }
             Collections.addAll(command, "-id3v2_version", "3", "-write_id3v1", "1", "-progress", "pipe:1", "-nostats", part.toString());
 
             Process process = new ProcessBuilder(command).start();
@@ -105,10 +112,10 @@ final class MediaEngine implements AutoCloseable {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    if (line.startsWith("out_time_us=") && duration > 0) {
+                    if (line.startsWith("out_time_us=") && probe.duration() > 0) {
                         long micros = parseLong(line.substring(12));
-                        item.progress = Math.max(5, Math.min(99, (int) (micros / (duration * 1_000_000d) * 100)));
-                        item.detail = "高品质编码中 · " + item.progress + "%";
+                        item.progress = Math.max(5, Math.min(99, (int) (micros / (probe.duration() * 1_000_000d) * 100)));
+                        item.detail = (preserveOriginalMp3 ? "无损提取中 · " : "高品质编码中 · ") + item.progress + "%";
                         changed.accept(item);
                     }
                 }
@@ -144,6 +151,14 @@ final class MediaEngine implements AutoCloseable {
         String ext = extension(source);
         if (!Set.of("gkk", "kgg", "kgm", "kgma", "kge", "kgtemp").contains(ext)) {
             return new PreparedInput(source, false, "读取源音频");
+        }
+        if (KggV5Decoder.supports(source)) {
+            Path decoded = KggV5Decoder.decodeToTemporaryFile(source, tools);
+            return new PreparedInput(decoded, true, "已解密新版 KGG v5 音频");
+        }
+        if (KgmDecoder.supports(source)) {
+            Path decoded = KgmDecoder.decodeToTemporaryFile(source);
+            return new PreparedInput(decoded, true, "已解密旧版 KGM/KGG 音频");
         }
         HeaderMatch match = findAudioHeader(source);
         if (match != null && match.offset == 0) return new PreparedInput(source, false, "已识别 " + match.format + " 音频流");
@@ -181,19 +196,28 @@ final class MediaEngine implements AutoCloseable {
         return null;
     }
 
-    private double probeDuration(Path input) {
-        if (!tools.hasProbe()) return -1;
+    private ProbeInfo probe(Path input) {
+        if (!tools.hasProbe()) return new ProbeInfo(-1, "");
         try {
-            Process process = new ProcessBuilder(tools.ffprobe().toString(), "-v", "error", "-show_entries",
-                "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", input.toString()).redirectErrorStream(true).start();
-            String result;
+            Process process = new ProcessBuilder(tools.ffprobe().toString(), "-v", "error", "-select_streams", "a:0",
+                "-show_entries", "stream=codec_name:format=duration", "-of", "default=noprint_wrappers=1",
+                input.toString()).redirectErrorStream(true).start();
+            double duration = -1;
+            String codec = "";
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-                result = reader.readLine();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith("codec_name=")) codec = line.substring("codec_name=".length()).trim();
+                    if (line.startsWith("duration=")) {
+                        try { duration = Double.parseDouble(line.substring("duration=".length()).trim()); }
+                        catch (NumberFormatException ignored) {}
+                    }
+                }
             }
-            if (process.waitFor(10, TimeUnit.SECONDS) && process.exitValue() == 0 && result != null) return Double.parseDouble(result.trim());
+            if (process.waitFor(10, TimeUnit.SECONDS) && process.exitValue() == 0) return new ProbeInfo(duration, codec);
         } catch (Exception ignored) {
         }
-        return -1;
+        return new ProbeInfo(-1, "");
     }
 
     private static Path uniqueOutput(Path directory, String fileName) {
@@ -271,4 +295,5 @@ final class MediaEngine implements AutoCloseable {
 
     private record PreparedInput(Path path, boolean temporary, String description) {}
     private record HeaderMatch(long offset, String format, String extension) {}
+    private record ProbeInfo(double duration, String codec) {}
 }
