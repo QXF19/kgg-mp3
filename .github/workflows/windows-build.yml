@@ -40,7 +40,7 @@ jobs:
 
       - name: Build portable EXE package
         shell: powershell
-        run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.1.1' }}'.TrimStart('v')
+        run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.1.2' }}'.TrimStart('v')
 
       - name: Verify audio conversion
         shell: pwsh

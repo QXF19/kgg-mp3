@@ -1,5 +1,5 @@
 param(
-    [string]$Version = '1.1.1',
+    [string]$Version = '1.1.2',
     [switch]$SkipBuild
 )
 
@@ -74,6 +74,11 @@ Copy-Item -LiteralPath $Sqlite -Destination (Join-Path $InputDirectory 'tools\sq
     --app-version $Version `
     --description 'KGG/KGM high-quality MP3 converter'
 if ($LASTEXITCODE -ne 0) { throw "jpackage failed with exit code $LASTEXITCODE" }
+
+& (Join-Path $ProjectRoot 'scripts\set-utf8-manifest.ps1') -Executables @(
+    (Join-Path $AppImage 'kgg-mp3.exe'),
+    (Join-Path $AppImage 'kgg-mp3-cli.exe')
+)
 
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'README.md') -Destination $AppImage
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'LICENSE') -Destination $AppImage
