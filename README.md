@@ -7,6 +7,8 @@ Windows 本地高品质 KGG/KGM 音频转 MP3 工具。支持拖拽、批量转�
 
 v1.1.0 提供 macOS 风格的浅色界面、圆角控件和蓝色操作按钮，并加入新版 KGG v5 解密。已使用真实 KGG 文件完成转换及整首音频解码验证。新版文件仍需要本机酷狗保存的对应歌曲密钥。
 
+v1.1.1 增加 MAP/RC4、V1/V2 密钥封装及分段边界的自动兼容性测试，修复 GitHub Release 自动发布，并加强密钥完整性验证。仅凭 `.kgg` 扩展名无法保证所有文件都可转换：缺失专属密钥、损坏文件和未知格式需要分别处理。
+
 ## 下载使用
 
 1. 打开 [Releases](https://github.com/QXF19/kgg-mp3/releases)，下载 `kgg-mp3-windows-x64.zip`。

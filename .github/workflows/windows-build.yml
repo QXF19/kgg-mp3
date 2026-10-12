@@ -40,7 +40,7 @@ jobs:
 
       - name: Build portable EXE package
         shell: powershell
-        run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.1.0' }}'.TrimStart('v')
+        run: ./package-windows.ps1 -Version '${{ github.ref_type == 'tag' && github.ref_name || '1.1.1' }}'.TrimStart('v')
 
       - name: Verify audio conversion
         shell: powershell
@@ -49,6 +49,10 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Test compilation failed' }
           java -cp 'build/classes;build/test-classes' cn.gkkstudio.MediaEngineSmokeTest
           if ($LASTEXITCODE -ne 0) { throw 'Conversion test failed' }
+          javac -encoding UTF-8 -cp build/classes -d build/test-classes src/test/java/cn/gkkstudio/KggV5CompatibilityTest.java
+          if ($LASTEXITCODE -ne 0) { throw 'V5 test compilation failed' }
+          java -cp 'build/classes;build/test-classes' cn.gkkstudio.KggV5CompatibilityTest
+          if ($LASTEXITCODE -ne 0) { throw 'KGG v5 compatibility test failed' }
 
       - name: Upload Windows package
         uses: actions/upload-artifact@v6
@@ -59,13 +63,17 @@ jobs:
 
       - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
-        shell: powershell
+        shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           $Tag = '${{ github.ref_name }}'
-          if (gh release view $Tag 2>$null) {
+          $env:GH_REPO = '${{ github.repository }}'
+          gh release view $Tag --json tagName 2>$null | Out-Null
+          $ReleaseExists = $LASTEXITCODE -eq 0
+          if ($ReleaseExists) {
             gh release upload $Tag 'dist/kgg-mp3-windows-x64.zip' --clobber
           } else {
             gh release create $Tag 'dist/kgg-mp3-windows-x64.zip' --title "kgg-mp3 $Tag" --notes-file RELEASE_NOTES.md
           }
+          if ($LASTEXITCODE -ne 0) { throw 'GitHub Release publication failed' }

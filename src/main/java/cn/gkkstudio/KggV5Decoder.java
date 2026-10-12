@@ -337,9 +337,18 @@ final class KggV5Decoder {
             blockPosition++;
         }
         for (int zero = 0; zero < 7; zero++) {
-            if (blockPosition >= 8 || block[blockPosition] != previousCipher[blockPosition]) {
+            if (blockPosition == 8) {
+                byte[][] state = nextTencentBlock(encrypted, inputPosition, block, currentCipher, key);
+                previousCipher = state[0];
+                currentCipher = state[1];
+                block = state[2];
+                inputPosition += 8;
+                blockPosition = 0;
+            }
+            if (block[blockPosition] != previousCipher[blockPosition]) {
                 throw new IOException("Tencent TEA 完整性校验失败");
             }
+            blockPosition++;
         }
         return output;
     }
