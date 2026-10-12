@@ -20,6 +20,8 @@ public final class UiPreview {
                     frame.setSize(width, 820); frame.addNotify(); frame.validate();
                     capture(frame, directory.resolve("desktop-" + width + ".png"));
                 }
+                frame.setSize(1080, 740); frame.validate();
+                capture(frame, directory.resolve("minimum-window.png"));
                 if (args.length > 1) {
                     Method add = MainFrame.class.getDeclaredMethod("addPaths", List.class);
                     add.setAccessible(true); add.invoke(frame, List.of(Path.of(args[1])));

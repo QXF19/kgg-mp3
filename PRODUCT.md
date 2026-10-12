@@ -16,7 +16,7 @@ Drag and drop, file/folder import, conversion queue, quality selection, output d
 
 ## Brand Commitments
 
-User explicitly requests an Apple-like feeling. Use a restrained macOS-inspired desktop interface while preserving Windows window management and the existing conversion workflow. Chinese interface, project name kgg-mp3.
+User explicitly requests an Apple-like feeling and selected Liquid Glass after rejecting the initial ordinary light preview. Use translucent app-rendered panels, restrained highlights and macOS-style controls while preserving Windows window management and the existing conversion workflow. Chinese interface, project name kgg-mp3. Do not claim native macOS compositor blur or refraction.
 
 ## Evidence
 

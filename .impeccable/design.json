@@ -1,26 +1,12 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T13:38:53.689Z",
+  "generatedAt": "2026-10-12T14:08:23.268Z",
   "title": "Design System: KGG MP3",
   "extensions": {
     "colorMeta": {
-      "workspace": {
-        "role": "neutral",
-        "displayName": "Cool Workspace",
-        "tonalRamp": [
-          "oklch(15.00% 0.00265 286.35)",
-          "oklch(26.43% 0.00265 286.35)",
-          "oklch(37.86% 0.00265 286.35)",
-          "oklch(49.29% 0.00265 286.35)",
-          "oklch(60.71% 0.00265 286.35)",
-          "oklch(72.14% 0.00265 286.35)",
-          "oklch(83.57% 0.00265 286.35)",
-          "oklch(95.00% 0.00265 286.35)"
-        ]
-      },
       "surface": {
         "role": "neutral",
-        "displayName": "White Work Surface",
+        "displayName": "White Control Surface",
         "tonalRamp": [
           "oklch(15.00% 0.00000 89.88)",
           "oklch(26.43% 0.00000 89.88)",
@@ -30,20 +16,6 @@
           "oklch(72.14% 0.00000 89.88)",
           "oklch(83.57% 0.00000 89.88)",
           "oklch(95.00% 0.00000 89.88)"
-        ]
-      },
-      "sidebar": {
-        "role": "neutral",
-        "displayName": "Sidebar Silver",
-        "tonalRamp": [
-          "oklch(15.00% 0.00401 286.32)",
-          "oklch(26.43% 0.00401 286.32)",
-          "oklch(37.86% 0.00401 286.32)",
-          "oklch(49.29% 0.00401 286.32)",
-          "oklch(60.71% 0.00401 286.32)",
-          "oklch(72.14% 0.00401 286.32)",
-          "oklch(83.57% 0.00401 286.32)",
-          "oklch(95.00% 0.00401 286.32)"
         ]
       },
       "text": {
@@ -158,9 +130,9 @@
           "oklch(95.00% 0.02289 258.36)"
         ]
       },
-      "table-subtle": {
+      "table-header": {
         "role": "neutral",
-        "displayName": "Quiet Table",
+        "displayName": "Quiet Table Header",
         "tonalRamp": [
           "oklch(15.00% 0.00264 286.35)",
           "oklch(26.43% 0.00264 286.35)",
@@ -170,6 +142,48 @@
           "oklch(72.14% 0.00264 286.35)",
           "oklch(83.57% 0.00264 286.35)",
           "oklch(95.00% 0.00264 286.35)"
+        ]
+      },
+      "table-row": {
+        "role": "neutral",
+        "displayName": "Translucent White Row",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "table-row-alternate": {
+        "role": "neutral",
+        "displayName": "Translucent Cool Row",
+        "tonalRamp": [
+          "oklch(15.00% 0.00573 264.53)",
+          "oklch(26.43% 0.00573 264.53)",
+          "oklch(37.86% 0.00573 264.53)",
+          "oklch(49.29% 0.00573 264.53)",
+          "oklch(60.71% 0.00573 264.53)",
+          "oklch(72.14% 0.00573 264.53)",
+          "oklch(83.57% 0.00573 264.53)",
+          "oklch(95.00% 0.00573 264.53)"
+        ]
+      },
+      "table-divider": {
+        "role": "neutral",
+        "displayName": "Queue Top Divider",
+        "tonalRamp": [
+          "oklch(15.00% 0.00672 286.27)",
+          "oklch(26.43% 0.00672 286.27)",
+          "oklch(37.86% 0.00672 286.27)",
+          "oklch(49.29% 0.00672 286.27)",
+          "oklch(60.71% 0.00672 286.27)",
+          "oklch(72.14% 0.00672 286.27)",
+          "oklch(83.57% 0.00672 286.27)",
+          "oklch(95.00% 0.00672 286.27)"
         ]
       },
       "progress-track": {
@@ -184,48 +198,6 @@
           "oklch(72.14% 0.01884 255.53)",
           "oklch(83.57% 0.01884 255.53)",
           "oklch(95.00% 0.01884 255.53)"
-        ]
-      },
-      "sidebar-divider": {
-        "role": "neutral",
-        "displayName": "Sidebar Divider",
-        "tonalRamp": [
-          "oklch(15.00% 0.00270 286.35)",
-          "oklch(26.43% 0.00270 286.35)",
-          "oklch(37.86% 0.00270 286.35)",
-          "oklch(49.29% 0.00270 286.35)",
-          "oklch(60.71% 0.00270 286.35)",
-          "oklch(72.14% 0.00270 286.35)",
-          "oklch(83.57% 0.00270 286.35)",
-          "oklch(95.00% 0.00270 286.35)"
-        ]
-      },
-      "table-border": {
-        "role": "neutral",
-        "displayName": "Table Border",
-        "tonalRamp": [
-          "oklch(15.00% 0.00704 268.55)",
-          "oklch(26.43% 0.00704 268.55)",
-          "oklch(37.86% 0.00704 268.55)",
-          "oklch(49.29% 0.00704 268.55)",
-          "oklch(60.71% 0.00704 268.55)",
-          "oklch(72.14% 0.00704 268.55)",
-          "oklch(83.57% 0.00704 268.55)",
-          "oklch(95.00% 0.00704 268.55)"
-        ]
-      },
-      "import-border": {
-        "role": "neutral",
-        "displayName": "Import Border",
-        "tonalRamp": [
-          "oklch(15.00% 0.02023 257.47)",
-          "oklch(26.43% 0.02023 257.47)",
-          "oklch(37.86% 0.02023 257.47)",
-          "oklch(49.29% 0.02023 257.47)",
-          "oklch(60.71% 0.02023 257.47)",
-          "oklch(72.14% 0.02023 257.47)",
-          "oklch(83.57% 0.02023 257.47)",
-          "oklch(95.00% 0.02023 257.47)"
         ]
       },
       "success": {
@@ -269,36 +241,224 @@
           "oklch(83.57% 0.15617 42.99)",
           "oklch(95.00% 0.15617 42.99)"
         ]
+      },
+      "backdrop-blue": {
+        "role": "neutral",
+        "displayName": "Pale Blue Backdrop",
+        "tonalRamp": [
+          "oklch(15.00% 0.01441 264.50)",
+          "oklch(26.43% 0.01441 264.50)",
+          "oklch(37.86% 0.01441 264.50)",
+          "oklch(49.29% 0.01441 264.50)",
+          "oklch(60.71% 0.01441 264.50)",
+          "oklch(72.14% 0.01441 264.50)",
+          "oklch(83.57% 0.01441 264.50)",
+          "oklch(95.00% 0.01441 264.50)"
+        ]
+      },
+      "backdrop-violet": {
+        "role": "neutral",
+        "displayName": "Pale Violet Backdrop",
+        "tonalRamp": [
+          "oklch(15.00% 0.01265 306.03)",
+          "oklch(26.43% 0.01265 306.03)",
+          "oklch(37.86% 0.01265 306.03)",
+          "oklch(49.29% 0.01265 306.03)",
+          "oklch(60.71% 0.01265 306.03)",
+          "oklch(72.14% 0.01265 306.03)",
+          "oklch(83.57% 0.01265 306.03)",
+          "oklch(95.00% 0.01265 306.03)"
+        ]
+      },
+      "haze-blue": {
+        "role": "ambient",
+        "displayName": "Blue Haze",
+        "tonalRamp": [
+          "oklch(15.00% 0.12517 254.39)",
+          "oklch(26.43% 0.12517 254.39)",
+          "oklch(37.86% 0.12517 254.39)",
+          "oklch(49.29% 0.12517 254.39)",
+          "oklch(60.71% 0.12517 254.39)",
+          "oklch(72.14% 0.12517 254.39)",
+          "oklch(83.57% 0.12517 254.39)",
+          "oklch(95.00% 0.12517 254.39)"
+        ]
+      },
+      "haze-violet": {
+        "role": "ambient",
+        "displayName": "Violet Haze",
+        "tonalRamp": [
+          "oklch(15.00% 0.12636 298.00)",
+          "oklch(26.43% 0.12636 298.00)",
+          "oklch(37.86% 0.12636 298.00)",
+          "oklch(49.29% 0.12636 298.00)",
+          "oklch(60.71% 0.12636 298.00)",
+          "oklch(72.14% 0.12636 298.00)",
+          "oklch(83.57% 0.12636 298.00)",
+          "oklch(95.00% 0.12636 298.00)"
+        ]
+      },
+      "haze-white": {
+        "role": "ambient",
+        "displayName": "White Haze",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "glass-top": {
+        "role": "material",
+        "displayName": "White Glass Top",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "glass-bottom": {
+        "role": "material",
+        "displayName": "Cool Glass Bottom",
+        "tonalRamp": [
+          "oklch(15.00% 0.00791 253.85)",
+          "oklch(26.43% 0.00791 253.85)",
+          "oklch(37.86% 0.00791 253.85)",
+          "oklch(49.29% 0.00791 253.85)",
+          "oklch(60.71% 0.00791 253.85)",
+          "oklch(72.14% 0.00791 253.85)",
+          "oklch(83.57% 0.00791 253.85)",
+          "oklch(95.00% 0.00791 253.85)"
+        ]
+      },
+      "rim-top": {
+        "role": "material",
+        "displayName": "Bright Rim",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "rim-bottom": {
+        "role": "material",
+        "displayName": "Fading Rim",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "rim-inner": {
+        "role": "material",
+        "displayName": "Inner Rim",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "pointer-light": {
+        "role": "material",
+        "displayName": "Pointer Light",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "layer-tint": {
+        "role": "material",
+        "displayName": "Layer Tint",
+        "tonalRamp": [
+          "oklch(15.00% 0.07075 258.30)",
+          "oklch(26.43% 0.07075 258.30)",
+          "oklch(37.86% 0.07075 258.30)",
+          "oklch(49.29% 0.07075 258.30)",
+          "oklch(60.71% 0.07075 258.30)",
+          "oklch(72.14% 0.07075 258.30)",
+          "oklch(83.57% 0.07075 258.30)",
+          "oklch(95.00% 0.07075 258.30)"
+        ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Main heading",
-        "purpose": "28-point bold Swing font; portable token is not a CSS implementation."
+        "purpose": "Bold 26-point Swing font."
       },
       "headline": {
         "displayName": "Import heading",
-        "purpose": "18-point bold Swing font."
+        "purpose": "Bold 22-point Swing font."
+      },
+      "inspector-title": {
+        "displayName": "Inspector title and wordmark",
+        "purpose": "Bold 18-point Swing font."
       },
       "title": {
         "displayName": "Queue heading",
-        "purpose": "15-point bold Swing font."
+        "purpose": "Bold 15-point Swing font."
       },
       "body": {
-        "displayName": "Control and table text",
-        "purpose": "13-point plain Swing font."
+        "displayName": "Controls and table",
+        "purpose": "Plain 14-point Swing default; primary action and selected navigation are bold variants."
       },
       "label": {
-        "displayName": "Supporting labels",
-        "purpose": "12-point plain labels; readiness text uses bold."
+        "displayName": "Inspector labels",
+        "purpose": "Plain 13-point Swing font."
+      },
+      "supporting": {
+        "displayName": "Hints and summary",
+        "purpose": "Plain 12-point Swing font; engine readiness uses bold."
       },
       "metadata": {
-        "displayName": "Supporting metadata",
-        "purpose": "11-point version and conversion-summary text."
+        "displayName": "Version metadata",
+        "purpose": "Plain 11-point Swing font."
       }
     },
-    "shadows": [],
-    "motion": [],
+    "shadows": [
+      {
+        "name": "glass-layer-tint",
+        "value": "Java2D: for i=5..1, fillRoundRect(i, i+2, width-2*i, height-2*i-2, arc, arc), Color(30,54,90,3).",
+        "purpose": "Five subtle inset layers before the translucent panel fill; native painter geometry, not CSS box-shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "pointer-specular",
+        "value": "Mouse-event-driven repaint; radius 150 logical units; white alpha 110 at center to 0 at edge; clipped to inset rounded shape.",
+        "purpose": "Pointer-responsive light on panel mouseMoved, cleared on mouseExited. No timer, interpolation, or guarantee over child controls."
+      }
+    ],
     "breakpoints": []
   },
   "components": [
@@ -306,84 +466,95 @@
       "name": "Primary conversion button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Canonical: MainFrame.primaryButton() and buildSettingsCard(). Java Swing JButton with FlatLaf roundRect painter, enabled hover color, and UIManager keyboard focus; 150 by 40 preferred/maximum size. No HTML/CSS rendering supplied for this native component."
+      "description": "Canonical: MainFrame.primaryButton() and buildSettingsCard(). Solid blue JButton with FlatMacLightLaf roundRect painter, bold 14-point type, margin 9/20, preferred size 210×44 and expandable maximum width. Enabled hover changes blue; native focus/disabled rendering."
     },
     {
       "name": "Secondary action button",
       "kind": "button",
       "refersTo": "button-secondary",
-      "description": "Canonical: MainFrame.secondaryButton(). White/charcoal JButton, roundRect client property. FlatLaf owns hover, pressed, focus, and disabled rendering; dimensions vary by action."
+      "description": "Canonical: MainFrame.secondaryButton(). White/charcoal JButton with roundRect client property. FlatMacLightLaf owns control states; choose music 160×36, clear 100×32, cancel preferred 210×36."
     },
     {
       "name": "Output path field",
       "kind": "input",
       "refersTo": "output-field",
-      "description": "Canonical: MainFrame.buildSettingsCard(). JTextField at preferred height 34, placeholder and tooltip; disabled for source-folder mode or while processing. FlatLaf owns field colors and focus."
+      "description": "Canonical: MainFrame.buildSettingsCard(). JTextField preferred 210×36, placeholder and tooltip, vertically followed by change-folder control. Disabled in source-folder mode or while processing."
     },
     {
       "name": "Selected sidebar context",
       "kind": "nav",
       "refersTo": "navigation-selected",
-      "description": "Canonical: MainFrame.navItem(). Pale-blue rounded JPanel with bold 14-point blue label. A static context indicator, not an interactive routing component."
+      "description": "Canonical: MainFrame.navItem(). Solid pale-blue RoundedPanel with arc diameter12, bold14-point blue label. Static context label, not an interactive router; base color fails glass threshold."
     },
     {
-      "name": "White work card",
+      "name": "Glass import panel",
       "kind": "card",
-      "refersTo": "card",
-      "description": "Canonical: MainFrame.cardPanel() and RoundedPanel. Flat Java2D white fill, arc diameter 16 (radius 8), padding 14 vertical/16 horizontal; settings overrides padding to 18."
-    },
-    {
-      "name": "Import surface",
-      "kind": "custom",
       "refersTo": "import-card",
-      "description": "Canonical: MainFrame.buildDropCard(), DropPanel, ImportIcon. Preferred height 180, white rounded fill, pale outline, blue drawn import arrow, file chooser and copy-drop input."
+      "description": "Canonical: MainFrame.buildDropCard(), DropPanel and RoundedPanel. Height230, padding30/20/26/20, arc diameter28. Diagonal white220→cool-white156 alpha fill, five tint layers, white rims and additional border whitealpha210; file chooser and copy-drop behavior."
     },
     {
-      "name": "Queue table row",
+      "name": "Glass settings inspector",
+      "kind": "card",
+      "refersTo": "settings-inspector",
+      "description": "Canonical: MainFrame.buildSettingsCard() and RoundedPanel. Width250, padding24/20/22/20, arc diameter28; translucent gradient, double rim and event-driven pointer light. Vertically stacked quality/output/concurrency; bottom conversion action."
+    },
+    {
+      "name": "Glass sidebar",
+      "kind": "card",
+      "refersTo": "sidebar",
+      "description": "Canonical: MainFrame.buildSidebar() and RoundedPanel. Preferred width190, padding30/18/24/18, arc diameter28; same glass painter. Wordmark with36×36 runtime icon; context and output action retain native behavior."
+    },
+    {
+      "name": "Queue table",
       "kind": "custom",
       "refersTo": "queue-row",
-      "description": "Canonical: MainFrame.buildQueueCard(). Real JTable, row height 48, alternating white/subtle rows, selected pale blue, 12/10 left/right cell padding, text tooltips."
+      "description": "Canonical: MainFrame.buildQueueCard(). Non-opaque JTable, scrollpane and viewport; row height56, header38; whitealpha180/cool-whitealpha180 alternate cells, solid pale-blue selected cells, state/filename tooltips and1-unit top divider."
     },
     {
       "name": "Conversion progress",
       "kind": "custom",
-      "description": "Canonical: MainFrame.ProgressRenderer. Real JProgressBar, primary blue foreground and progress-track background, percentage string above zero, em dash at zero."
+      "description": "Canonical: MainFrame.ProgressRenderer. Real JProgressBar, primary blue on progress-track; percentage above zero, em dash at zero."
+    },
+    {
+      "name": "Procedural glass backdrop",
+      "kind": "custom",
+      "description": "Canonical: MainFrame.GlassBackdrop. Diagonal pale-blue→pale-violet gradient plus radial haze at normalized(.28,.15),(.79,.80),(.58,.45), radius .50/.48/.34×root width. Stops0/.58/1 use alpha/alpha÷3/0. No sampled-backdrop blur or desktop-window transparency."
     }
   ],
   "narrative": {
-    "northStar": "A Quiet Music Workspace",
-    "overview": "A restrained macOS-inspired visual world expresses the user's pinned Apple-like direction: pale neutrals, white work areas, charcoal Chinese typography, and precise blue actions. This is a Windows desktop application implemented in Java Swing with FlatLaf, not a macOS application, browser surface, iOS app, or Android app. Windows window management stays intact.\n\nCalm comes from tonal separation and generous spacing around task-dense controls. The real conversion queue remains central; styling must preserve local processing, source preservation, and the existing conversion workflow. This document records code evidence from MainFrame.java and GkkMp3App.java. Finish review covered empty and waiting queues at window widths 1200 and 1080; processing, completion, and failure layouts are code-observed rather than visually verified.",
+    "northStar": "Light Through the Music Workspace",
+    "overview": "The user-selected Liquid Glass-inspired world uses procedural pale blue/violet light beneath translucent white panels, layered white rim highlights, and a pointer-responsive specular spot. Dark Chinese typography and restrained blue actions keep conversion controls readable. The rejected flat-light direction is superseded by this material language.\n\nThis remains a Windows Java Swing desktop application with FlatMacLightLaf controls and native Windows window management. Glass is drawn inside the app with Java2D alpha gradients and layered shapes: there is no macOS compositor integration, backdrop blur, optical refraction, or transparency to other desktop windows. The source is canonical; supplied previews cover 1200 × 820, 1080 × 820, and the 1080 × 740 minimum. A fresh finish review is handled separately.",
     "keyCharacteristics": [
-      "Quiet neutral surfaces with blue reserved for actions, selection, and progress.",
-      "Readable Chinese system typography and a real, scrollable queue table.",
-      "Rounded custom panels without painted shadows or decorative window chrome.",
-      "Local-first desktop behavior and preserved Windows affordances."
+      "Procedural blue/violet light fields and translucent white work panels.",
+      "Thin layered white rims and pointer-responsive highlights.",
+      "Readable Chinese type, a real queue table, and a distinct right-side inspector.",
+      "Native Windows behavior and unchanged local audio conversion."
     ],
     "rules": [
       {
         "name": "The Action Separation Rule",
-        "body": "Do not conflate primary action blue, keyboard focus blue, and pale selected surfaces; their roles are distinct in the implementation.",
+        "body": "Keep action, keyboard focus, selection, and ambient blue distinct; ambient light is not an interactive state.",
         "section": "colors"
       },
       {
-        "name": "The Tonal Depth Rule",
-        "body": "Preserve flat, differentiated work areas; do not add decorative elevation to the queue or import surface.",
+        "name": "The Honest Glass Rule",
+        "body": "Describe the implemented translucency and highlights, never unimplemented blur, optical refraction, or macOS compositor effects.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do preserve the user's Apple-like visual direction while retaining Windows window management.",
-      "Do use the observed palette and Microsoft YaHei UI hierarchy for new Swing controls.",
-      "Do keep visible text status, usable keyboard focus, and file-state detail alongside color cues.",
-      "Do preserve the local converter workflow and source-file safety.",
-      "Do treat Java source as canonical when portable token previews differ from FlatLaf rendering."
+      "Do preserve the user-selected Liquid Glass-inspired material rather than reverting to flat-light panels.",
+      "Do keep dark readable Chinese text and clear blue conversion actions above the light fields.",
+      "Do use the actual Java2D alpha, rim, and pointer-light behavior when extending glass panels.",
+      "Do preserve native Windows window management, keyboard focus, visible text status, and local converter safety.",
+      "Do treat Java source and FlatMacLightLaf rendering as canonical."
     ],
     "donts": [
-      "Don't represent this Windows Swing application as web, macOS, iOS, or Android.",
-      "Don't add fake Apple traffic-light window controls or decorative glass to the native frame.",
-      "Don't fabricate CSS breakpoints, custom control-state colors, or animation timings.",
-      "Don't describe GPU detection as GPU MP3 encoding or imply audio uploads.",
-      "Don't label procedural project icons as AI-generated assets."
+      "Don't describe app-painted glass as native macOS compositor blur, optical refraction, or desktop-window transparency.",
+      "Don't replace native Windows chrome with fake Apple traffic-light controls.",
+      "Don't invent web breakpoints, timed spring animation, or unsupported native platform metadata.",
+      "Don't use glass decoration to obscure filenames, state detail, settings, or the primary action.",
+      "Don't claim GPU MP3 encoding, audio uploads, or AI-generated provenance for procedural project icons."
     ]
   }
 }

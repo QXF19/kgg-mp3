@@ -96,8 +96,9 @@ public final class GkkMp3App {
         UIManager.put("Component.focusColor", new Color(0x007AFF));
         UIManager.put("Button.default.background", new Color(0x007AFF));
         UIManager.put("Button.default.foreground", Color.WHITE);
-        com.formdev.flatlaf.FlatLightLaf.setup();
-        Font font = new Font("Microsoft YaHei UI", Font.PLAIN, 13);
+        Font font = new Font("Microsoft YaHei UI", Font.PLAIN, 14);
+        UIManager.put("defaultFont", font);
+        com.formdev.flatlaf.themes.FlatMacLightLaf.setup();
         UIManager.put("defaultFont", font);
         UIManager.put("Button.font", font);
         UIManager.put("Label.font", font);

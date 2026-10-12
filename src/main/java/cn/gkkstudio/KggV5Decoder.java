@@ -101,7 +101,8 @@ final class KggV5Decoder {
             if (version != 5) throw new IOException("不支持的 KGG 加密版本: " + version);
             long audioOffset = Integer.toUnsignedLong(littleEndianInt(fixed, 0x10));
             int hashLength = littleEndianInt(fixed, 0x44);
-            if (audioOffset < 0x48 || audioOffset >= Files.size(source) || hashLength <= 0 || hashLength > 256) {
+            if (audioOffset < 0x48 || audioOffset >= Files.size(source) || hashLength <= 0 || hashLength > 256
+                || audioOffset < 0x48L + hashLength) {
                 throw new IOException("KGG 文件头参数无效");
             }
             byte[] hash = input.readNBytes(hashLength);
