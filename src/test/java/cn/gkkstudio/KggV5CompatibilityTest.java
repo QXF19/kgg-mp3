@@ -53,9 +53,9 @@ public final class KggV5CompatibilityTest {
                         output.write(header.array()); output.write(payload);
                     }
                     Path output = root.resolve("output-" + sequence);
-                    String java = Path.of(System.getProperty("java.home"), "bin", "java.exe").toString();
-                    run(List.of(java, "-Dfile.encoding=UTF-8", "-cp", Path.of("build/classes").toAbsolutePath().toString(),
-                        "cn.gkkstudio.GkkMp3App", "--cli", encrypted.toString(), output.toString()), database);
+                    Path launcher = Path.of("dist/kgg-mp3/kgg-mp3-cli.exe").toAbsolutePath();
+                    if (!Files.isRegularFile(launcher)) throw new AssertionError("Packaged CLI launcher missing");
+                    run(List.of(launcher.toString(), encrypted.toString(), output.toString()), database);
                     Path mp3 = output.resolve("测试音频 " + sequence + ".mp3");
                     if (!Files.isRegularFile(mp3)) throw new AssertionError("Output missing");
                     run(List.of(tools.ffmpeg().toString(), "-v", "error", "-xerror", "-i", mp3.toString(), "-f", "null", "-"), null);
