@@ -24,27 +24,27 @@ colors:
 typography:
   display:
     fontFamily: "Microsoft YaHei UI"
-    fontSize: "28px"
+    fontSize: "28pt"
     fontWeight: 700
   headline:
     fontFamily: "Microsoft YaHei UI"
-    fontSize: "18px"
+    fontSize: "18pt"
     fontWeight: 700
   title:
     fontFamily: "Microsoft YaHei UI"
-    fontSize: "15px"
+    fontSize: "15pt"
     fontWeight: 700
   body:
     fontFamily: "Microsoft YaHei UI"
-    fontSize: "13px"
+    fontSize: "13pt"
     fontWeight: 400
   label:
     fontFamily: "Microsoft YaHei UI"
-    fontSize: "12px"
+    fontSize: "12pt"
     fontWeight: 400
   metadata:
     fontFamily: "Microsoft YaHei UI"
-    fontSize: "11px"
+    fontSize: "11pt"
     fontWeight: 400
 rounded:
   panel: "8px"
@@ -110,7 +110,7 @@ components:
 
 A restrained macOS-inspired visual world expresses the user's pinned Apple-like direction: pale neutrals, white work areas, charcoal Chinese typography, and precise blue actions. This is a Windows desktop application implemented in Java Swing with FlatLaf, not a macOS application, browser surface, iOS app, or Android app. Windows window management stays intact.
 
-Calm comes from tonal separation and generous spacing around task-dense controls. The real conversion queue remains central; styling must preserve local processing, source preservation, and the existing conversion workflow. This document records code evidence from `MainFrame.java` and `GkkMp3App.java`, not a claim of pixel-verified screenshots or a native Apple component implementation.
+Calm comes from tonal separation and generous spacing around task-dense controls. The real conversion queue remains central; styling must preserve local processing, source preservation, and the existing conversion workflow. This document records code evidence from MainFrame.java and GkkMp3App.java. Finish review covered empty and waiting queues at window widths 1200 and 1080; processing, completion, and failure layouts are code-observed rather than visually verified.
 
 **Key Characteristics:**
 
@@ -145,9 +145,11 @@ Cool pale neutrals provide the workspace; distinct blues distinguish action, sel
 
 **The Action Separation Rule.** Do not conflate primary action blue, keyboard focus blue, and pale selected surfaces; their roles are distinct in the implementation.
 
+The sidecar's eight-step OKLCH ramps are synthesized swatch previews, not implemented palette tokens. It contains native source descriptions rather than fabricated HTML/CSS versions of Swing components; a web live panel cannot render these as canonical native controls.
+
 ## Typography
 
-Microsoft YaHei UI is the single requested family, installed through Swing's UIManager. The implementation uses Java's platform font substitution when that family is unavailable; no explicit fallback stack is defined. Font sizes are Java font points, represented as pixel-like logical units in the portable frontmatter; they are not CSS rendering instructions or physical screen pixels.
+Microsoft YaHei UI is the single requested family, installed through Swing's UIManager. The implementation uses Java's platform font substitution when that family is unavailable; no explicit fallback stack is defined. Font sizes are Java font points, represented as point values in the portable frontmatter; they are not CSS rendering instructions or physical screen pixels.
 
 - Display is the main window heading.
 - Headline is the import-area heading.
