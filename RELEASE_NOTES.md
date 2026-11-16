@@ -1,6 +1,12 @@
-# kgg-mp3 v1.1.2
+# kgg-mp3 v1.1.3
 
-Windows 高品质音频转换工具，解压后双击 `kgg-mp3.exe` 即可使用。无需另外安装 Java、FFmpeg 或 SQLite。
+Windows 高品质音频转换工具，下载单文件 `kgg-mp3.exe` 后双击即可使用，无需手动解压或另外安装 Java、FFmpeg、SQLite。
+
+- 新增单文件 EXE，内置应用、Java 运行环境及全部音频工具。
+- 首次启动自动展开组件到 `%LOCALAPPDATA%\kgg-mp3\runtime`，后续启动复用缓存。
+- 支持并发首次启动、中文及空格路径，并为首次启动提供准备进度提示。
+- 单文件版支持 `--cli <输入音频> [输出文件夹]` 和 `--diagnose`。
+- 已验证独立 EXE 的首次展开、缓存复用、实际音频转换和图形界面启动。
 
 - 全新液态玻璃风格界面：半透明面板、柔和蓝紫背景、玻璃高光、macOS 控件主题与独立转换设置侧栏。
 - 新增真实旧版 KGM 解密以及新版 KGG v5 解密，自动读取本机酷狗歌曲密钥。
@@ -15,4 +21,4 @@ Windows 高品质音频转换工具，解压后双击 `kgg-mp3.exe` 即可使用
 
 本版本已在本机使用真实 KGG v5 文件完成 EXE 转换，并通过整首 MP3 解码检查。MP3 编码使用 CPU / LAME；显卡检测不代表 GPU MP3 编码。
 
-下载 `kgg-mp3-windows-x64.zip` 后完整解压，再打开其中的 `kgg-mp3.exe`。请保留 `app` 和 `runtime` 文件夹。
+推荐下载单文件 `kgg-mp3.exe`。也可使用 `kgg-mp3-windows-x64.zip`，完整解压后运行文件夹中的 EXE，并保留 `app` 和 `runtime` 文件夹。

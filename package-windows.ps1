@@ -1,5 +1,5 @@
 param(
-    [string]$Version = '1.1.2',
+    [string]$Version = '1.1.3',
     [switch]$SkipBuild
 )
 
@@ -85,5 +85,7 @@ Copy-Item -LiteralPath (Join-Path $ProjectRoot 'LICENSE') -Destination $AppImage
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'LICENSE-FlatLaf.txt') -Destination $AppImage
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'THIRD_PARTY_NOTICES.md') -Destination $AppImage
 Compress-Archive -LiteralPath $AppImage -DestinationPath $Archive -CompressionLevel Optimal
+
+& (Join-Path $ProjectRoot 'scripts\package-single-exe.ps1')
 
 Write-Host "Portable EXE package created: $Archive" -ForegroundColor Green

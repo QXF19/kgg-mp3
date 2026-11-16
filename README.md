@@ -11,9 +11,10 @@ v1.1.1 使用液态玻璃风格的半透明侧栏、柔和背景、玻璃高光�
 
 ## 下载使用
 
-1. 打开 [Releases](https://github.com/QXF19/kgg-mp3/releases)，下载 `kgg-mp3-windows-x64.zip`。
-2. 解压 ZIP。
-3. 双击 `kgg-mp3.exe`，无需安装 Java 或 FFmpeg。
+1. 打开 [Releases](https://github.com/QXF19/kgg-mp3/releases)，下载单文件版 `kgg-mp3.exe`。
+2. 双击打开，无需手动解压、安装 Java 或 FFmpeg。
+
+首次启动会自动将内置组件展开到 `%LOCALAPPDATA%\kgg-mp3\runtime`，之后启动复用缓存。单文件版支持 `--cli <输入音频> [输出文件夹]` 和 `--diagnose`。也可下载 `kgg-mp3-windows-x64.zip`，解压后运行文件夹中的 EXE。
 
 系统要求：Windows 10 1903 或更新版本 / Windows 11，64 位。EXE 启动器内置 UTF-8 进程声明，支持中文文件路径，不需更改系统区域设置。
 
@@ -62,7 +63,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ./install-ui.ps1
 ./package-windows.bat
 ```
 
-发行包会生成到 `dist/kgg-mp3-windows-x64.zip`。GitHub Actions 也会在每次推送后自动构建；推送 `v*` 标签时自动创建 Release。
+打包会同时生成单文件 `dist/kgg-mp3.exe` 和便携 ZIP `dist/kgg-mp3-windows-x64.zip`。GitHub Actions 也会在每次推送后自动构建；推送 `v*` 标签时自动创建 Release。
 
 ## 许可证
 
